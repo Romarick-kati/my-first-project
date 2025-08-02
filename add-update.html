@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'poppins';
+    box-sizing: border-box;
+}
+.container{
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-around;
+    border: 6px  inset rgb(234, 228, 228);
+    margin: 1rem;
+    height: auto;
+    min-height: 100vh;
+    animation: fadeIn 0.8s ease-in-out;
+    transition: all 0.3s ease;
+}
+.left{
+   padding: 2rem;
+   width: 50%;
+   margin: 1rem;
+   animation: slideInLeft 0.6s ease-out;
+}
+
+h1 a{
+    text-decoration: none;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+}
+
+h1 a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    transition: all 0.4s ease;
+    transform: translateX(-50%);
+}
+
+h1 a:hover::after {
+    width: 100%;
+}
+
+h1 a:hover{
+    transform: scale(1.05);
+    filter: drop-shadow(0 4px 8px rgba(102, 126, 234, 0.3));
+}
+
+.head{
+    margin-top: 2.1rem;
+    margin-bottom: 1.5rem;
+   padding: 4px;
+    width:70%;
+    animation: fadeInUp 0.7s ease-out 0.2s both;
+}
+.btn{
+    display: flex;
+    gap: 1rem;
+}
+.active{
+    color: white;
+    padding: 8px;
+    background: linear-gradient(135deg, hsla(240, 75%, 2%, 0.991) 0%, #442763 100%);
+    align-items: center;
+    justify-content: center;
+    border-bottom-left-radius: 15px;
+     border-bottom-right-radius: 15px;
+     border-top-left-radius: 15px;
+     border-top-right-radius: 15px;
+    height: 2.3rem;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    border: none;
+    animation: bounceIn 0.6s ease-out 0.3s both;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+.active::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.6s;
+}
+
+.active:hover::before {
+    left: 100%;
+}
+
+.active:hover{
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+}
+
+.act{
+     padding: 8px;
+    height: 2.3rem;
+    margin-left: 1rem;
+     border-bottom-left-radius: 15px;
+     border-bottom-right-radius: 15px;
+     border-top-left-radius: 15px;
+     border-top-right-radius: 15px;
+     transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+     cursor: pointer;
+     border: 2px solid transparent;
+     background: linear-gradient(white, white) padding-box,
+                 linear-gradient(45deg, #667eea, #764ba2) border-box;
+     animation: bounceIn 0.6s ease-out 0.4s both;
+     position: relative;
+     overflow: hidden;
+}
+
+.act::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: -1;
+}
+
+.act:hover::after {
+    opacity: 0.1;
+}
+
+.act:hover{
+    transform: translateY(-2px) scale(1.01);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.2);
+    color: #667eea;
+}
+
+.big{
+    width: 15rem;
+     padding: 8px;
+     height: 2.3rem;
+     margin-top: 1rem;
+     border-bottom-left-radius: 15px;
+     border-bottom-right-radius: 15px;
+     border-top-left-radius: 15px;
+     border-top-right-radius: 15px;
+     transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+     cursor: pointer;
+     border: 2px solid transparent;
+    border-color: black;
+     animation: bounceIn 0.6s ease-out 0.5s both;
+     position: relative;
+     transition: .3s ease-out;
+     overflow: hidden;
+}
+
+.big::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    //transition: all 0.6s ease;
+    transform: translate(-50%, -50%);
+}
+
+.big:hover::before {
+    width: 200px;
+    height: 200px;
+}
+
+.big:hover{
+      background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+      color: white;
+   
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 8px 25px rgba(240, 147, 251, 0.3);
+   
+}
+
+.btn2{
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+    
+}
+.btn3{
+     padding: 8px;
+    height: 2.3rem;
+    margin-top: 1rem;
+     border-bottom-left-radius: 15px;
+     border-bottom-right-radius: 15px;
+     border-top-left-radius: 15px;
+     border-top-right-radius: 15px;
+     transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+     cursor: pointer;
+     border: 2px solid transparent;
+     animation: bonceIn 0.6s ease-out 0.6s both;
+     border-color: black;
+     position: relative;
+}
+
+.btn3::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    transition: left 0.5s ease;
+}
+
+.btn3:hover::after {
+    left: 0;
+}
+
+.btn3:hover{
+    transform: translateY(-7px) rotate(3deg) scale(1.1);
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+    box-shadow:  all 0 6px 20px rgba(168, 237, 234, 0.4);
+    color: white;
+    
+}
+
+.right{
+       padding: 2rem;
+      border: 0px solid #ddd;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            overflow: hidden;
+    width: 50%;
+    margin: 1rem;
+    animation: slideInRight 0.6s ease-out;
+}
+
+details {
+    margin-bottom: 8px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    animation: fadeInUp 0.5s ease-out;
+}
+
+details:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    transform: translateY(-1px);
+}
+
+summary {
+    display: flex; 
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 15px;
+    background-color: #f7f7f7;
+    cursor: pointer;
+    font-weight: bold;
+    color: #333;
+    list-style: none;
+    user-select: none; 
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+summary:hover {
+    background-color: #efefef;
+    transform: translateX(5px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+summary::after {
+    content: '+'; 
+    font-size: 1.2em;
+    margin-left: 3px;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55); 
+    display: inline-block;
+    width: 1em; 
+    text-align: center;
+    background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+    flex-shrink: 0;
+}
+
+details[open] summary::after {
+    content: '-'; 
+    transform: rotate(360deg) scale(1.1);
+    background: linear-gradient(45deg, #f093fb 0%, #f5576c 100%);
+    box-shadow: 0 2px 8px rgba(245, 87, 108, 0.3);
+}
+
+.content {
+    padding: 0 15px; 
+    background-color: hsl(0, 0%, 100%);
+    line-height: 1.6;
+    color: #555;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.4s ease-in-out;
+    opacity: 0;
+}
+
+details[open] .content {
+    padding-bottom: 15px; 
+    padding-top: 10px; 
+    max-height: 200px;
+    opacity: 1;
+}
+
+details[open] summary {
+    border-bottom: 1px solid #eee;
+    background-color: #f0f0f0;
+}
+
+.yo{
+     padding: 8px;
+    height: 2.3rem;
+    margin-top: 1rem;
+     border-bottom-left-radius: 15px;
+     border-bottom-right-radius: 15px;
+     border-top-left-radius: 15px;
+     border-top-right-radius: 15px;
+     transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+     cursor: pointer;
+     border: none;
+      background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+    
+     animation: bounceIn 0.6s ease-out 0.7s both;
+     color: white;
+     font-weight: bold;
+     text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+     box-shadow: 0 4px 15px rgba(255, 154, 158, 0.4);
+     position: relative;
+     overflow: hidden;
+}
+
+.yo::before {
+    content: '✉';
+    position: absolute;
+    left: -30px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2em;
+    transition: all 0.5s ease;
+    opacity: 0;
+}
+
+.yo:hover::before {
+    left: 10px;
+    opacity: 1;
+}
+
+.yo:hover{
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(255, 154, 158, 0.6);
+    background: linear-gradient(135deg, #fecfef 0%, #ff9a9e 50%, #ff9a9e 100%);
+    padding-left: 35px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideInLeft {
+    from { 
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to { 
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from { 
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to { 
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from { 
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to { 
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounceIn {
+    from { 
+        opacity: 0;
+        transform: scale(0.8) translateY(20px);
+    }
+    to { 
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        margin: 0.5rem;
+        height: auto;
+    }
+    
+    .left, .right {
+        width: 100%;
+        margin: 0.5rem;
+        padding: 1rem;
+    }
+    
+    p.head {
+        width: 100%;
+    }
+    
+    .btn2 {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .btn3 {
+        margin-left: 0;
+        width: 100%;
+    }
+    
+    .act {
+        margin-left: 0;
+    }
+    
+    .big {
+        width: 100%;
+    }
+    
+    .btn1 {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        margin: 0.25rem;
+    }
+    
+    .left, .right {
+        padding: 0.75rem;
+        margin: 0.25rem;
+    }
+    
+    summary {
+        padding: 10px 12px;
+        font-size: 0.9em;
+    }
+    
+    .content {
+        padding: 0 12px;
+        font-size: 0.9em;
+    }
+    
+    details[open] .content {
+        padding-bottom: 12px;
+        padding-top: 8px;
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+    <div class="left">
+    <h1 class="faq">  <a href="landing.update.html">FAQs</a> </h1>
+    
+    <p class="head">
+        Everything you need to know About Future
+        Membership,and Troubleshooting
+    </p>
+    <div class="btn1">
+        <button class="active">Getting Started</button>
+        <button class="act">Members and Preicing</button>
+    </div>
+    <div class="big-button">
+        <button class="big">Book Request and Recomendations</button>
+    </div>
+    <div class="btn2">
+       <button class="btn3">Acount and Technical Issues</button>
+       <button class="btn3">Acount and Technical Issues</button>
+    </div>
+    </div>
+
+
+    <div class="right">
+ <details>
+        <summary>how do i sign up for an acount</summary>
+        <div class="content">
+        <p>
+           Signing up is easy!
+           Just download the app ,click on "Sign Up" and folllow the prompts.
+           you can use your email address,Google,or Facebook to create and acount
+        </p>
+       
+        </div>
+    </details>
+
+
+
+     <details>
+        <summary>Can I acess The app from multiple devices</summary>
+        <div class="content">
+        <p>
+            This is the content that will be displayed when you click the plus sign.
+            You can put any HTML content here: text, images, links, etc.
+        </p>
+        </div>
+    </details>
+
+
+     <details>
+        <summary>how do I borrow Books</summary>
+         <div class="content">
+        <p>
+            This is the content that will be displayed when you click the plus sign.
+            You can put any HTML content here: text, images, links, etc.
+        </p>
+        </div>
+    </details>
+
+
+     <details>
+        <summary>Can I download Books to read online?</summary>
+         <div class="content"> 
+        <p>
+            This is the content that will be displayed when you click the plus sign.
+            You can put any HTML content here: text, images, links, etc.
+        </p>
+         </div>
+    </details>
+
+
+
+
+    <details>
+        <summary>Still Have Questions?</summary>
+         <div class="content"> 
+        <p>
+            This is the content that will be displayed when you click the plus sign.
+            You can put any HTML content here: text, images, links, etc.
+        </p>
+         </div>
+    </details>
+
+
+
+    <div class="last">
+        <button class="yo">Contact Suport</button>
+    </div>
+    </div>
+    </div>
+      
+</body>
+</html>
